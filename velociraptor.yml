@@ -1,0 +1,12 @@
+scripts:
+  codic: deno run --import-map import_map.json --allow-env --allow-read --allow-net codic.ts
+  compile:
+    - vr compile-windows
+    - vr compile-mac
+    - vr compile-linux
+  compile-windows:
+    - deno compile --import-map import_map.json --allow-env --allow-read --allow-net --output ./dist/x86_64-pc-windows-msvc/codic codic.ts
+  compile-mac:
+    - deno compile --import-map import_map.json --allow-env --allow-read --allow-net --output ./dist/x86_64-apple-darwin/codic codic.ts
+  compile-linux:
+    - deno compile --import-map import_map.json --allow-env --allow-read --allow-net --output ./dist/x86_64-unknown-linux-gnu/codic codic.ts

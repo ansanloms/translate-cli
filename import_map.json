@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "std/": "https://deno.land/std@0.148.0/",
+    "cliffy/": "https://deno.land/x/cliffy@v0.24.2/"
+  }
+}
