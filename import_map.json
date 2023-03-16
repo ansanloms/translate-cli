@@ -1,6 +1,9 @@
 {
   "imports": {
-    "std/": "https://deno.land/std@0.148.0/",
-    "cliffy/": "https://deno.land/x/cliffy@v0.24.2/"
+    "std/": "https://deno.land/std@0.179.0/",
+    "cliffy/": "https://deno.land/x/cliffy@v0.25.7/",
+    "xdg_portable/": "https://deno.land/x/xdg_portable@v10.6.0/",
+    "unknownutil/": "https://deno.land/x/unknownutil@v1.1.4/",
+    "openai": "npm:openai@3.2.1"
   }
 }

@@ -1,25 +1,30 @@
-import { join } from "std/path/mod.ts";
-import { RequestGetEngineTranslate } from "./codic.ts";
+import xdg from "xdg_portable/src/mod.deno.ts";
+import * as path from "std/path/mod.ts";
+import * as fs from "std/fs/mod.ts";
 
-const ConfigFileName = "codic.json";
+import { providers } from "./provider.ts";
+import { Codic, Config as CodicConfig } from "../providers/Codic.ts";
+import { ChatGpt, Config as ChatGptConfig } from "../providers/ChatGpt.ts";
 
-type ConfigType = {
-  token: string;
-  casing?: RequestGetEngineTranslate["casing"];
+export const filePath = path.join(
+  xdg.config(),
+  "translate",
+  "config.json",
+);
+
+type Config = {
+  defaultProvider?: typeof providers[number];
+  [Codic.provider]?: CodicConfig;
+  [ChatGpt.provider]?: ChatGptConfig;
 };
 
-const configDir = () => {
-  const xdg = Deno.env.get("XDG_CONFIG_HOME");
-  if (xdg) {
-    return xdg;
+export const getConfig = async () => {
+  try {
+    await Deno.stat(filePath);
+  } catch (e) {
+    fs.ensureDir(path.dirname(filePath));
+    await Deno.writeTextFile(filePath, "{}");
   }
 
-  const home =
-    Deno.env.get(Deno.build.os === "windows" ? "HOMEPATH" : "HOME") || "";
-
-  return join(home, ".config");
+  return JSON.parse(await Deno.readTextFile(filePath)) as Config;
 };
-
-export const config = JSON.parse(
-  await Deno.readTextFile(join(configDir(), ConfigFileName)),
-) as ConfigType;

@@ -1,0 +1,6 @@
+{
+  "importMap": "import_map.json",
+  "tasks": {
+    "translate": "deno run --allow-env --allow-read --allow-write --allow-net translate.ts"
+  }
+}
