@@ -39,8 +39,12 @@ ensureString(text);
 
 const provider = getProvider(providerName);
 const providerConfig = Object.assign(
-  await provider.parseOptions(Deno.args),
-  config[providerName],
+  config[providerName] || {},
+  Object.fromEntries(
+    Object.entries(await provider.parseOptions(Deno.args)).filter(([, v]) =>
+      typeof v !== "undefined"
+    ),
+  ),
 );
 
 const translateResult = await provider.translate(text, providerConfig);
