@@ -1,8 +1,13 @@
 import { Provider } from "../providers/Provider.ts";
 import { Codic } from "../providers/Codic.ts";
 import { ChatGpt } from "../providers/ChatGpt.ts";
+import { DeepL } from "../providers/DeepL.ts";
 
-export const providers = [Codic.provider, ChatGpt.provider] as const;
+export const providers = [
+  Codic.provider,
+  ChatGpt.provider,
+  DeepL.provider,
+] as const;
 
 export function assertProvider(
   x: unknown,
@@ -26,6 +31,10 @@ export const getProvider = (
 
     case ChatGpt.provider: {
       return new ChatGpt();
+    }
+
+    case DeepL.provider: {
+      return new DeepL();
     }
   }
 

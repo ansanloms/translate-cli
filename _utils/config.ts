@@ -5,6 +5,7 @@ import * as fs from "std/fs/mod.ts";
 import { providers } from "./provider.ts";
 import { Codic, Config as CodicConfig } from "../providers/Codic.ts";
 import { ChatGpt, Config as ChatGptConfig } from "../providers/ChatGpt.ts";
+import { Config as DeepLConfig, DeepL } from "../providers/DeepL.ts";
 
 export const filePath = path.join(
   xdg.config(),
@@ -16,6 +17,7 @@ type Config = {
   defaultProvider?: typeof providers[number];
   [Codic.provider]?: CodicConfig;
   [ChatGpt.provider]?: ChatGptConfig;
+  [DeepL.provider]?: DeepLConfig;
 };
 
 export const getConfig = async () => {

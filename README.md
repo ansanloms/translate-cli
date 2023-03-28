@@ -34,6 +34,10 @@ Example:
     "targetLanguage": "Japanese",
     "systemMessage": "Translate from English to Japanese.",
     "model": "gpt-3.5-turbo"
+  },
+  "deepl": {
+    "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "targetLang": "JA"
   }
 }
 ```
