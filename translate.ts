@@ -5,10 +5,11 @@ import { assertProvider, getProvider, providers } from "./_utils/provider.ts";
 
 const { options, args } = await new Command()
   .name("translate")
-  .version("0.0.2")
+  .version("0.0.3")
   .description("translate")
   .type("provider", new EnumType(providers))
   .arguments("<text:string>")
+  .helpOption(false)
   .option(
     "-p --provider <provider:provider>",
     "Translate provider.",
